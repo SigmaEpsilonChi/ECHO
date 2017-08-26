@@ -48,6 +48,11 @@ public class Echo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (CursorInWindow() && Input.GetMouseButtonDown(0)) {
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		}
+
 		int i;
 		Renderer[] responders = geometry.GetComponentsInChildren<Renderer>();
 		for (i = 0; i < responders.Length; i++) {
@@ -137,5 +142,12 @@ public class Echo : MonoBehaviour {
 			endStyle.fontSize = Screen.height/4;
 			GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "ECHO", endStyle);
 		}
+	}
+
+	bool CursorInWindow () {
+		Vector2 v = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+		if (v.x >= 1 || v.x <= 0) return false;
+		if (v.y >= 1 || v.y <= 0) return false;
+		return true;
 	}
 }

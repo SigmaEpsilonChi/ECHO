@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<style>
+</style>
+<html>
+    <head>
+        <title>Echo</title>
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        <link rel="icon" type="image/png" href="/favicon.png"/>
+
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="./Web/TemplateData/style.css">
+        <script src="./Web/TemplateData/UnityProgress.js"></script>  
+        <script src="./Web/Build/UnityLoader.js"></script>
+    </head>
+    <body>
+        <div id="nav-container"></div>
+        <script type="text/javascript">
+        $(document).ready(function() {
+        $('#nav-container').load('/nav.html');
+        });
+        </script>
+
+        <div class="game">
+            <div class="game-title">ECHO</div>
+            <div class="spacer"></div>
+
+            <div id="gameContainer" style="width: 960px; height: 600px;"></div>
+            <div class="game-fullscreen" onclick="gameInstance.SetFullscreen(1)">fullscreen</div>
+
+            <div class="spacer"></div>
+            <div class="game-description">
+                A brief game I made in a weekend about finding your way in the dark.
+            </div>
+
+            <div class="spacer"></div>
+            <div class="game-notes">
+                Unfortunately, the constraints of browser deployment mean that some<br>
+                audio and visual effects are not as rich as the original build.
+            </div>
+
+            <div class="spacer"></div>
+        </div>
+
+        <script>
+            var gameInstance = UnityLoader.instantiate("gameContainer", "./Web/Build/Web.json", {onProgress: UnityProgress});
+            // I really wish UnityLoader would stop modifying the style attributes of this container.
+            document.getElementById("gameContainer").style.margin = "auto";
+        </script>
+
+        <div id="footer-container"></div>
+        <script type="text/javascript">
+        $(document).ready(function() {
+        $('#footer-container').load('/footer.html');
+        });
+        </script>
+    </body>
+</html>
